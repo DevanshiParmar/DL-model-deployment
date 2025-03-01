@@ -1,3 +1,4 @@
-# requirements.txt for Flask backend
 flask
 torch
+torchvision
+Pillow
