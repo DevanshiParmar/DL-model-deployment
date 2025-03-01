@@ -1,0 +1,36 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Classification</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="card shadow">
+       <div class="card-body">
+          <h1 class="card-title">ResNet18 Image Classification</h1>
+          <p class="card-text">Upload an image (expected size: 3x64x64) for classification.</p>
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              <div class="alert alert-danger">
+                <ul>
+                  {% for message in messages %}
+                    <li>{{ message }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
+          {% endwith %}
+          <form method="post" enctype="multipart/form-data">
+             <div class="form-group">
+                <label for="file">Choose an image file:</label>
+                <input type="file" class="form-control-file" name="file" id="file" accept="image/*">
+             </div>
+             <button type="submit" class="btn btn-primary">Predict</button>
+          </form>
+       </div>
+    </div>
+</div>
+</body>
+</html>
