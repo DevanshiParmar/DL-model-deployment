@@ -9,10 +9,10 @@ from PIL import Image
 import matplotlib.pyplot as plt
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'  # Replace with a secure secret key
+app.secret_key = 'secret'
 
 # Get the model filename from the environment (default to "model_latest.pt")
-model_file = os.environ.get("MODEL_FILE", "model_latest.pt")
+model_file = os.environ.get("MODEL_FILE", "serialized_models/model_v1.pt")
 model = torch.jit.load(model_file)
 model.eval()
 
