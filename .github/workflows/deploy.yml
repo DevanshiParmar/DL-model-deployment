@@ -3,13 +3,13 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main  # Runs when code is pushed to the 'main' branch
+      - main
 
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
     env:
-      MODEL_FILE: "model_latest.pt"  # Update this if needed
+      MODEL_FILE: "serialized_models/model_v1.pt"
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
