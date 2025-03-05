@@ -3,13 +3,13 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main
+      - main  
 
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
     env:
-      MODEL_FILE: "serialized_models/model_v1.pt"
+      MODEL_FILE: "serialized_models/model_v1.pt" 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -30,14 +30,13 @@ jobs:
     needs: build_and_push
     runs-on: ubuntu-latest
     env:
-      MODEL_FILE: "model_latest.pt"
+      MODEL_FILE: "serialized_models/model_v1.pt"  
+      RAILWAY_DEPLOY_WEBHOOK: ${{ secrets.RAILWAY_DEPLOY_WEBHOOK }}  
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
       
-      - name: Trigger Deployment on Render
-        env:
-          RENDER_DEPLOY_WEBHOOK: ${{ secrets.RENDER_DEPLOY_WEBHOOK }}
+      - name: Trigger Deployment on Railway
         run: |
           chmod +x deploy.sh
           ./deploy.sh
